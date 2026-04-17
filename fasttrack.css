@@ -1,3 +1,15 @@
+/* ==================== CSS VARIABLES ==================== */
+:root {
+  --primary: #1a5276;
+  --primary-hover: #154360;
+  --accent: #4a89dc;
+  --text-main: #000000;
+  --bg-main: #ededed;
+  --border-dot: 1.8px dotted #000;
+  --error: #c0392b;
+  --error-hover: #a93226;
+}
+
 * {
   box-sizing: border-box;
   margin: 0;
@@ -6,8 +18,9 @@
 }
 
 body {
-  background-color: #ededed;
-  color: #000;
+  background-color: var(--bg-main);
+  color: var(--text-main);
+  line-height: 1.5;
 }
 
 body.modal-open {
@@ -16,43 +29,20 @@ body.modal-open {
 
 h1 {
   font-size: 1.1rem;
-  text-align: center;
   font-weight: normal;
 }
 
-p,
-label,
-input,
-span {
+p, label, input, span, div {
   font-size: 1rem;
-  font-weight: lighter;
+  font-weight: 300;
 }
 
-input {
-  width: 100%;
-  border: none;
-  border-bottom: 1.8px dotted #000;
-  background: transparent;
-  font-family: inherit;
-  text-align: center;
-}
-
-input:focus {
-  outline: none;
-}
-
-input[type="checkbox"],
-input[type="radio"] {
-  width: auto;
-  border: none;
-}
-
-/* ==================== LAYOUT ==================== */
+/* ==================== LAYOUT (A4) ==================== */
 .page {
   width: 21cm;
   min-height: 29.7cm;
   margin: 25px auto;
-  padding: 2.8cm 2.2cm 2cm;
+  padding: 2.5cm 2.2cm 2cm;
   background: white;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
   position: relative;
@@ -61,128 +51,56 @@ input[type="radio"] {
 .divider {
   text-align: center;
   margin: 0.2cm 0 0.3cm;
-  font-weight: normal;
 }
 
 .line {
   display: flex;
   align-items: baseline;
-  gap: 0.1cm;
-  margin-bottom: 0.2cm;
+  gap: 0.2cm;
+  margin-bottom: 0.25cm;
   flex-wrap: wrap;
 }
 
-.input {
-  flex: 1;
-  position: relative;
-  min-width: 1cm;
-}
-
-/* ==================== SECTION TITLES ==================== */
+/* ==================== TYPOGRAPHY ==================== */
 .section-title {
   font-weight: normal;
+  font-size: 1.05rem;
   margin-bottom: 0.2cm;
-  font-size: 1rem;
 }
 
 .subsection-title {
   font-weight: normal;
-  font-size: 1rem;
   margin-bottom: 0.15cm;
 }
 
-/* ==================== RADIO / CHECKBOX ==================== */
-.radio-group {
-  display: flex;
-  gap: 5px;
-}
-
-.radio {
-  display: flex;
-  align-items: center;
-  gap: 1px;
-  cursor: pointer;
-  white-space: nowrap;
-}
-
-.radio input[type="radio"] {
-  display: none;
-}
-
-/* checkmark วงกลม (radio) */
-/* BUG FIX: รวม .checkmark และ .checkmark-sq ที่มี style เหมือนกันเป็น shared rule */
-.checkmark,
-.checkmark-sq {
-  width: 0.45cm;
-  height: 0.45cm;
-  border: 1px solid #000;
-  display: inline-block;
-  margin-right: 0.15cm;
+/* ==================== INPUT TEXT & ANIMATED BAR ==================== */
+.input {
   position: relative;
-  flex-shrink: 0;
+  min-width: 1cm;
 }
 
-.checkmark::after,
-.checkmark-sq::after {
-  content: "";
-  position: absolute;
-  display: none;
-  left: 0.1cm;
-  top: 0.05cm;
-  width: 0.15cm;
-  height: 0.3cm;
-  border: solid #000;
-  border-width: 0 2px 2px 0;
-  transform: rotate(45deg);
+input[type="text"],
+input[type="number"],
+input[type="tel"] {
+  width: 100%;
+  border: none;
+  border-bottom: var(--border-dot);
+  background: transparent;
+  text-align: center;
+  padding: 2px 0;
 }
 
-input[type="radio"]:checked + .checkmark::after,
-input[type="radio"]:checked ~ .checkmark::after,
-input[type="checkbox"]:checked + .checkmark-sq::after {
-  display: block;
+input:focus {
+  outline: none;
 }
 
-/* checkbox label แบบ inline */
-.checkbox-label {
-  display: flex;
-  align-items: center;
-  gap: 0.1cm;
-  white-space: nowrap;
-  cursor: pointer;
-  font-size: 1rem;
+input:disabled {
+  background-color: rgba(0, 0, 0, 0.03);
+  color: #888;
+  cursor: not-allowed;
 }
 
-.checkbox-label input[type="checkbox"] {
-  width: 0.45cm;
-  height: 0.45cm;
-  cursor: pointer;
-}
-
-/* checkbox/radio แบบ block (ขึ้นบรรทัด) */
-.check-row {
-  display: flex;
-  align-items: baseline;
-  gap: 0.1cm;
-  margin-bottom: 0.15cm;
-}
-
-.checkbox-block {
-  display: flex;
-  align-items: center;
-  gap: 0.1cm;
-  cursor: pointer;
-  font-size: 1rem;
-  white-space: normal;
-}
-
-.checkbox-block input[type="radio"],
-.checkbox-block input[type="checkbox"] {
-  display: none;
-  margin-top: 4px;
-  flex-shrink: 0;
-}
-
-/* ==================== INPUT FOCUS BAR ==================== */
+/* แอนิเมชันขีดเส้นใต้ตอน Focus */
 .bar::before,
 .bar::after {
   content: "";
@@ -190,127 +108,154 @@ input[type="checkbox"]:checked + .checkmark-sq::after {
   bottom: 0;
   width: 0;
   height: 2px;
-  background: #4a89dc;
-  transition: width 0.2s;
+  background: var(--accent);
+  transition: width 0.2s ease;
 }
 
-.bar::before {
-  left: 50%;
-}
-
-.bar::after {
-  right: 50%;
-}
+.bar::before { left: 50%; }
+.bar::after { right: 50%; }
 
 input:focus ~ .bar::before,
 input:focus ~ .bar::after {
   width: 50%;
 }
 
+/* ==================== CUSTOM RADIO & CHECKBOX ==================== */
+.radio-group {
+  display: flex;
+  gap: 12px;
+}
+
+.radio, .checkbox-label, .checkbox-block {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+  user-select: none;
+}
+
+.checkbox-block {
+  align-items: flex-start; /* กรณีข้อความยาวขึ้นบรรทัดใหม่ */
+  margin-bottom: 0.15cm;
+}
+
+/* ซ่อน Input แบบ Accessibility-friendly (กด Tab ได้) */
+input[type="radio"],
+input[type="checkbox"] {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* กล่องจำลอง Checkmark */
+.checkmark,
+.checkmark-sq {
+  width: 0.45cm;
+  height: 0.45cm;
+  border: 1px solid var(--text-main);
+  position: relative;
+  flex-shrink: 0;
+  display: inline-block;
+  background-color: #fff;
+  transition: all 0.2s;
+}
+
+.checkmark { border-radius: 50%; } /* วงกลมสำหรับ Radio */
+.checkmark-sq { border-radius: 2px; } /* สี่เหลี่ยมสำหรับ Checkbox */
+
+/* สถานะ Focus เมื่อกด Tab คีย์บอร์ด */
+input[type="radio"]:focus + .checkmark,
+input[type="checkbox"]:focus + .checkmark-sq {
+  box-shadow: 0 0 0 2px var(--accent);
+}
+
+/* สร้างจุดกลมด้านใน (Radio) */
+.checkmark::after {
+  content: "";
+  position: absolute;
+  display: none;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  width: 0.25cm; height: 0.25cm;
+  border-radius: 50%;
+  background: var(--text-main);
+}
+
+/* สร้างเครื่องหมายถูก (Checkbox) */
+.checkmark-sq::after {
+  content: "";
+  position: absolute;
+  display: none;
+  left: 0.13cm; top: 0.05cm;
+  width: 0.12cm; height: 0.25cm;
+  border: solid var(--text-main);
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+
+/* แสดงผลเมื่อถูก Checked */
+input:checked + .checkmark::after,
+input:checked + .checkmark-sq::after {
+  display: block;
+}
+
 /* ==================== SIGNATURE SECTION ==================== */
 .signature-section {
-  margin-top: 0.5cm;
-  margin-left: 5cm;
+  margin-top: 1cm;
   display: flex;
   flex-direction: column;
-  gap: 0.1cm;
-}
-
-.sig-row {
-  display: flex;
-  align-items: flex-end;
+  align-items: flex-end; /* ดันไปชิดขวา */
+  padding-right: 2cm;    /* เว้นระยะขอบขวา */
   gap: 0.2cm;
-  white-space: nowrap;
 }
 
-.sig-label {
-  font-size: 1rem;
-  line-height: 1;
-  white-space: nowrap;
+.sig-row, .sig-name-row, .sig-date-row {
+  display: flex;
+  align-items: baseline;
+  gap: 0.2cm;
 }
 
 .sig-box {
-  position: relative;
   width: 6cm;
-  border-bottom: 1.8px dotted #000;
   min-height: 1.1cm;
+  border-bottom: var(--border-dot);
+  position: relative;
   cursor: pointer;
   display: flex;
   align-items: flex-end;
   justify-content: center;
-  padding-bottom: 2px;
-  background: transparent;
+  transition: border-color 0.2s;
 }
 
 .sig-box:hover {
-  border-bottom-color: #4a89dc;
+  border-bottom-color: var(--accent);
 }
 
 .sig-placeholder {
-  font-size: 0.75rem;
+  font-size: 0.8rem;
   color: #aaa;
-  letter-spacing: 0.05em;
-  user-select: none;
-  padding-bottom: 2px;
+  margin-bottom: 2px;
 }
 
 .sig-box img {
   max-width: 100%;
   max-height: 1.1cm;
   object-fit: contain;
-  display: block;
-}
-
-.sig-name-row {
-  display: flex;
-  align-items: baseline;
-  gap: 0;
-  font-size: 1rem;
-  white-space: nowrap;
-  margin-left: 1cm;
-}
-
-.sig-name-row .paren {
-  font-size: 1rem;
 }
 
 .name-input-wrap {
   width: 5.5cm;
-  position: relative;
-}
-
-.name-input-wrap input {
-  text-align: center;
-  border-bottom: 1.8px dotted #000;
-  width: 100%;
-}
-
-.sig-date-row {
-  display: flex;
-  align-items: baseline;
-  gap: 0.1cm;
-  margin-left: 1cm;
-  font-size: 1rem;
-}
-
-.date-input-wrap {
-  width: 1.4cm;
-  position: relative;
-}
-
-.date-input-wrap input {
-  text-align: center;
-  border-bottom: 1.8px dotted #000;
-  width: 100%;
 }
 
 /* ==================== SIGNATURE MODAL ==================== */
 .sig-modal-overlay {
-  display: none;
+  display: none; /* ซ่อนเป็นค่าเริ่มต้น */
   position: fixed;
   z-index: 9999;
   inset: 0;
-  background: rgba(0, 0, 0, 0.45);
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(2px);
   align-items: center;
   justify-content: center;
 }
@@ -321,100 +266,74 @@ input:focus ~ .bar::after {
 
 .sig-modal {
   background: #fff;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  padding: 24px 20px 20px;
-  width: 480px;
+  border-radius: 8px;
+  padding: 24px;
+  width: 90%;
+  max-width: 480px;
   text-align: center;
-  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.18);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
 }
 
 .sig-modal h3 {
-  font-size: 1rem;
-  font-family: inherit;
-  margin: 0 0 12px;
-  border-bottom: 1px solid #ddd;
-  padding-bottom: 8px;
+  margin-bottom: 15px;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 10px;
 }
 
 #signatureCanvas {
-  border: 1px solid #bbb;
+  border: 1px dashed #ccc;
   background: #fafafa;
-  touch-action: none;
-  display: block;
-  margin: 0 auto;
+  border-radius: 4px;
   cursor: crosshair;
+  touch-action: none; /* ป้องกันมือถือเลื่อนจอตอนเซ็น */
+  margin: 0 auto;
 }
 
 .sig-modal-actions {
-  margin-top: 12px;
+  margin-top: 15px;
   display: flex;
   justify-content: center;
-  gap: 8px;
+  gap: 10px;
 }
 
 .btn-sig {
-  font-family: inherit;
-  font-size: 0.85rem;
-  padding: 4px 18px;
-  border: 1px solid #bbb;
-  border-radius: 2px;
+  padding: 6px 20px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
   cursor: pointer;
-  background: #f5f5f5;
-  transition: background 0.15s;
+  background: #f8f9fa;
+  transition: all 0.2s;
 }
 
-.btn-sig:hover {
-  background: #e8e8e8;
-}
+.btn-sig:hover { background: #e9ecef; }
+.btn-sig.confirm { background: var(--primary); color: #fff; border-color: var(--primary); }
+.btn-sig.confirm:hover { background: var(--primary-hover); }
+.btn-sig.cancel { background: var(--error); color: #fff; border-color: var(--error); }
+.btn-sig.cancel:hover { background: var(--error-hover); }
 
-.btn-sig.confirm {
-  background: #1a5276;
-  color: #fff;
-  border-color: #1a5276;
-}
-
-.btn-sig.confirm:hover {
-  background: #154360;
-}
-
-.btn-sig.cancel {
-  background: #c0392b;
-  color: #fff;
-  border-color: #c0392b;
-}
-
-.btn-sig.cancel:hover {
-  background: #a93226;
-}
-
-/* ==================== SAVE BUTTON ==================== */
+/* ==================== FLOATING SAVE BUTTON ==================== */
 #saveBtn {
   position: fixed;
   bottom: 2cm;
   right: 2cm;
   z-index: 1000;
+  padding: 12px 24px;
   font-size: 1rem;
-  padding: 0.35cm 0.8cm;
-  background: #1a5276;
+  background: var(--primary);
   color: #fff;
   border: none;
-  border-radius: 4px;
+  border-radius: 50px; /* ขอบมนสวยงาม */
   cursor: pointer;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
-  transition: background 0.15s, transform 0.1s;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
   display: flex;
   align-items: center;
-  gap: 6px;
+  gap: 8px;
+  transition: transform 0.2s, background 0.2s;
 }
 
 #saveBtn:hover {
-  background: #154360;
-  transform: translateY(-1px);
-}
-
-#saveBtn:active {
-  transform: translateY(0);
+  background: var(--primary-hover);
+  transform: translateY(-2px);
 }
 
 #saveBtn:disabled {
@@ -423,70 +342,69 @@ input:focus ~ .bar::after {
   transform: none;
 }
 
-/* ==================== PRINT ==================== */
-@page {
-  size: A4;
-  margin: 0;
-}
-
+/* ==================== PRINT MEDIA ==================== */
 @media print {
+  @page { size: A4; margin: 0; }
+  
   body {
-    background: none !important;
+    background: #fff !important;
   }
 
-  #saveBtn,
-  .sig-modal-overlay,
-  .sig-placeholder,
-  .bar,
-  button,
-  .sig-modal {
+  .page {
+    margin: 0 !important;
+    padding: 2.54cm 2cm !important; /* ระยะขอบ A4 มาตรฐาน */
+    box-shadow: none !important;
+    width: 21cm !important;
+  }
+
+  /* ซ่อนของที่ไม่ต้องปริ้นท์ */
+  #saveBtn, .sig-modal-overlay, .sig-placeholder, .bar, button {
     display: none !important;
   }
 
-  .page {
-    margin: 0 !important;
-    width: 21cm !important;
-    min-height: 29.7cm !important;
-    padding: 2.54cm 2cm !important;
-    box-shadow: none !important;
-    background: white !important;
+  /* ทำให้เส้นชัดขึ้นตอนปริ้นท์กระดาษจริง */
+  input[type="text"], input[type="number"], input[type="tel"] {
+    border-bottom: 1.5pt dotted #000 !important;
   }
-
+  
   .sig-box {
-    cursor: default !important;
-    border-bottom-color: #000 !important;
+    border-bottom: 1.5pt dotted #000 !important;
   }
 
-  #signaturePrev {
-    max-height: 1.2cm !important;
+  /* ลบสีพื้นหลังของ Input ที่โดน Disable ออกให้โปร่งใส */
+  input:disabled {
+    background-color: transparent !important;
   }
 }
 
-/* ==================== MOBILE ==================== */
+/* ==================== MOBILE RESPONSIVE ==================== */
 @media screen and (max-width: 768px) {
   .page {
     width: 100% !important;
-    min-height: auto !important;
-    margin: 0 !important;
-    padding: 1.5rem 1rem 7rem !important;
-    box-shadow: none !important;
+    min-height: auto;
+    margin: 0;
+    padding: 1.5rem 1rem 6rem; /* เพิ่ม padding ล่างเผื่อปุ่มลอย */
+    box-shadow: none;
+  }
+
+  .signature-section {
+    align-items: flex-start;
+    padding-right: 0;
+  }
+
+  .sig-box, .name-input-wrap {
+    width: 100%;
+    min-width: 5cm;
   }
 
   #saveBtn {
-    position: fixed;
     bottom: 0;
     left: 0;
     right: 0;
-    width: 100% !important;
+    width: 100%;
     border-radius: 0;
-    padding: 1.2rem;
+    justify-content: center;
+    padding: 18px;
     font-size: 1.1rem;
-    z-index: 9999;
-  }
-
-  .sig-box,
-  .signature-section {
-    margin-left: 0 !important;
-    width: 100% !important;
   }
 }
