@@ -394,18 +394,84 @@ input:checked + .checkmark-sq::after {
     width: 100% !important;
     min-height: auto;
     margin: 0;
-    padding: 1.5rem 1rem 6rem; /* เพิ่ม padding ล่างเผื่อปุ่มลอย */
+    padding: 1rem 1rem 6rem !important;
     box-shadow: none;
+  }
+  
+  header {
+    margin-top: 0 !important;
+  }
+
+  .line {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.3rem;
+    margin-bottom: 1rem;
+  }
+
+  .line > .input {
+    width: 100%;
+    max-width: 100% !important;
+  }
+
+  .radio-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem 1rem;
+    width: 100%;
+  }
+
+  .check-row {
+    margin-left: 0 !important;
   }
 
   .signature-section {
-    align-items: flex-start;
+    align-items: center;
     padding-right: 0;
+    width: 100%;
   }
 
-  .sig-box, .name-input-wrap {
+  .sig-row {
+    flex-direction: column;
+    align-items: center;
+    gap: 0.3rem;
     width: 100%;
-    min-width: 3cm;
+  }
+
+  .sig-box {
+    width: 100% !important;
+    max-width: 320px;
+    margin: 0.5rem 0;
+  }
+
+  .sig-name-row {
+    flex-direction: row !important;
+    flex-wrap: nowrap !important;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding-right: 0 !important;
+  }
+
+  .sig-name-row > .input {
+    width: 100%;
+    max-width: 250px !important;
+    margin: 0 0.2rem;
+  }
+
+  .sig-date-row {
+    flex-direction: row !important;
+    flex-wrap: nowrap !important;
+    justify-content: center;
+    align-items: baseline;
+    width: 100%;
+    padding-right: 0 !important;
+    gap: 0.2rem;
+  }
+
+  .sig-date-row > .input {
+    width: auto !important;
+    flex: 1;
   }
 
   #saveBtn {
