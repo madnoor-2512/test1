@@ -44,6 +44,11 @@ document.addEventListener("DOMContentLoaded", () => {
     () => document.getElementById("regIncomplete").checked
   );
 
+  setupDependentInput(
+    'input[name="regStatus"]', 
+    "otherReason", 
+    () => document.getElementById("regOther").checked
+  );
 
   // ==========================================
   // 2. Input Formatter: บังคับรูปแบบข้อมูล

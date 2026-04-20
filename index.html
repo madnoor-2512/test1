@@ -115,15 +115,15 @@
           <div class="line">
             <span>ช่องทางติดต่ออื่นๆ:</span>
             <label class="checkbox-label">
-              <input type="checkbox" name="contact" value="email">
+              <input type="radio" name="contact" value="email">
               <span class="checkmark-sq"></span> Email
             </label>
             <label class="checkbox-label">
-              <input type="checkbox" name="contact" value="line">
+              <input type="radio" name="contact" value="line">
               <span class="checkmark-sq"></span> Line
             </label>
             <label class="checkbox-label">
-              <input type="checkbox" name="contact" value="facebook">
+              <input type="radio" name="contact" value="facebook">
               <span class="checkmark-sq"></span> Facebook
             </label>
             <div class="input" style="flex:1;">
@@ -134,10 +134,10 @@
         </fieldset>
 
         <fieldset style="border:none; padding:0; margin-top:0.5cm;">
-          <legend class="section-title">ส่วนที่ 2 : คุณสมบัติของผู้สมัคร</legend>
-          <p class="subsection-title" style="text-indent:0.7cm;">2.1 ข้อมูลการลงทะเบียน</p>
+          <legend class="section-title line">ส่วนที่ 2 : คุณสมบัติของผู้สมัคร</legend>
+          <p class="subsection-title line" style="text-indent:0.7cm;">2.1 ข้อมูลการลงทะเบียน</p>
           
-          <div class="check-row" style="margin-left:1.2cm;">
+          <div class="check-row line" style="margin-left:1.2cm;">
             <label class="checkbox-block">
               <input type="radio" name="regStatus" value="complete" id="regComplete" required>
               <span class="checkmark-sq"></span>
@@ -157,7 +157,7 @@
           </div>
           <div class="check-row line" style="margin-left:1.2cm;">
             <label class="checkbox-block">
-              <input type="radio" name="regStatus" value="incomplete" id="regOther">
+              <input type="radio" name="regStatus" value="other" id="regOther">
               <span class="checkmark-sq"></span>
               อื่นๆ (โปรดระบุ)
             </label>
@@ -177,8 +177,8 @@
         </fieldset>
 
         <fieldset style="border:none; padding:0; margin-top:0.5cm;">
-          <legend class="section-title">ส่วนที่ 3 : หลักฐานการสมัคร</legend>
-          <div class="check-row" style="margin-left:1.2cm;">
+          <legend class="section-title line">ส่วนที่ 3 : หลักฐานการสมัคร</legend>
+          <div class="check-row line" style="margin-left:1.2cm;">
             <label class="checkbox-block">
               <input type="checkbox" name="evidence" value="transcript" required>
               <span class="checkmark-sq"></span>
@@ -187,7 +187,7 @@
           </div>
         </fieldset>
 
-        <p style="margin-top:0.8cm; text-indent:0.7cm;">ข้าพเจ้า ขอรับรองว่ามีคุณสมบัติครบถ้วนตามประกาศมหาวิทยาลัยทักษิณ เรื่อง โครงการเรียนล่วงหน้าสู่ปริญญาโท</p>
+        <p style="margin-top:0.8cm; text-indent:0.7cm;" class="line">ข้าพเจ้า ขอรับรองว่ามีคุณสมบัติครบถ้วนตามประกาศมหาวิทยาลัยทักษิณ เรื่อง โครงการเรียนล่วงหน้าสู่ปริญญาโท</p>
 
         <div class="signature-section">
           <div class="sig-row">
@@ -198,19 +198,29 @@
             </div>
             <span>นิสิตผู้สมัคร</span>
           </div>
-
-          <div class="sig-name-row">
+          <div class="sig-name-row line">
             <span>(</span>
-            <div class="name-input-wrap"><input type="text" id="printName" name="printName" placeholder="พิมพ์ชื่อ-นามสกุลตัวบรรจง" required></div>
+            <div class="name-input-wrap input">
+              <input type="text" id="printName" name="printName" required>
+              <span class="bar"></span>
+            </div>
             <span>)</span>
           </div>
-
-          <div class="sig-date-row">
-            <input type="text" id="sigDay" name="sigDay" placeholder="วว" maxlength="2" style="width:1cm;" required>
+          <div class="sig-date-row line">
+            <div class="input" style="width:1.2cm;">
+              <input type="text" id="sigDay" name="sigDay" placeholder="วว" maxlength="2" required>
+              <span class="bar"></span>
+            </div>
             <span>/</span>
-            <input type="text" id="sigMonth" name="sigMonth" placeholder="ดด" maxlength="2" style="width:1cm;" required>
+            <div class="input" style="width:1.2cm;">
+              <input type="text" id="sigMonth" name="sigMonth" placeholder="ดด" maxlength="2" required>
+              <span class="bar"></span>
+            </div>
             <span>/</span>
-            <input type="number" id="sigYear" name="sigYear" placeholder="พ.ศ." style="width:1.8cm;" min="2568" required>
+            <div class="input" style="width:2.2cm;">
+              <input type="number" id="sigYear" name="sigYear" placeholder="พ.ศ." min="2568" required>
+              <span class="bar"></span>
+            </div>
           </div>
         </div>
 
