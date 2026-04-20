@@ -7,7 +7,7 @@ window.addEventListener("load", async () => {
 
 document.addEventListener("DOMContentLoaded", () => {
 
-  // 1. Utility: จัดการ Input ที่ซ่อน/แสดง ตามเงื่อนไข
+  // จัดการ Input ที่ซ่อน/แสดง ตามเงื่อนไข
   function setupDependentInput(triggerSelector, targetId, conditionFn) {
     const target = document.getElementById(targetId);
     if (!target) return;
@@ -32,7 +32,7 @@ document.addEventListener("DOMContentLoaded", () => {
     () => document.getElementById("titleOtherRadio").checked
   );
 
-  // ช่องทางติดต่อ: ถ้าเลือก Email หรือ Line ถึงจะเปิดช่องกรอก ID
+  // ช่องทางติดต่อ
   setupDependentInput(
     'input[name="contact"]', 
     "contactId", 
@@ -53,8 +53,7 @@ document.addEventListener("DOMContentLoaded", () => {
     () => document.getElementById("regOther").checked
   );
 
-  // 2. Input Formatter: บังคับรูปแบบข้อมูล
-  // เบอร์โทรศัพท์: รับเฉพาะตัวเลข 10 หลัก
+  // เบอร์โทรศัพท์
   const phoneInput = document.getElementById("phone");
   if (phoneInput) {
     phoneInput.addEventListener("input", (e) => {
@@ -62,7 +61,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // วันที่และเดือน
+  // วันที่และเดือนใต้ช่องเซ็นชื่อ
   ["sigDay", "sigMonth"].forEach(id => {
     const el = document.getElementById(id);
     if (el) {
@@ -75,12 +74,12 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  // 3. Signature Canvas: จัดการการเซ็นชื่อ
+  //Signature Canvas
   const canvas = document.getElementById("signatureCanvas");
   const ctx = canvas.getContext("2d", { alpha: true });
   let drawing = false;
 
-  // ปรับขนาด Canvas ให้พอดีจอมือถือและคมชัด (High-DPI)
+  // ปรับขนาด Canvas
   function setupCanvasSize() {
     const modal = document.querySelector(".sig-modal");
     const targetWidth = Math.min(modal.clientWidth - 40, 420); 
@@ -137,7 +136,7 @@ document.addEventListener("DOMContentLoaded", () => {
   canvas.addEventListener("touchmove", draw, { passive: false });
   canvas.addEventListener("touchend", stopDraw);
 
-  // Global Functions สำหรับปุ่มใน HTML
+  // Global Functions
   window.clearCanvas = () => {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
   };
@@ -171,7 +170,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (e.target.id === "signatureModal") closeSignatureModal();
   });
 
-  // 4. PDF Export (html2canvas + jsPDF)
+  // PDF Export
   window.exportPDF = async () => {
     const form = document.getElementById("FastTrackForm");
     

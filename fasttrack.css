@@ -29,13 +29,9 @@ body {
   transition: opacity 0.4s ease-in-out;
 }
 
-body.ready {
-  opacity: 1;
-}
+body.ready {opacity: 1;}
 
-body.modal-open {
-  overflow: hidden;
-}
+body.modal-open {overflow: hidden;}
 
 h1 {
   font-size: 1.1rem;
@@ -58,11 +54,11 @@ p, label, input, span, div {
   position: relative;
 }
 
-.AcademicYear {
-    display: flex;
-    flex-wrap: wrap;
-    width: 100%;
-  }
+.AcademicYear, .gpax{
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+}
 
 .divider {
   text-align: center;
@@ -106,9 +102,7 @@ input[type="tel"] {
   padding: 2px 0;
 }
 
-input:focus {
-  outline: none;
-}
+input:focus {outline: none;}
 
 input:disabled {
   background-color: rgba(0, 0, 0, 0.03);
@@ -151,11 +145,11 @@ input:focus ~ .bar::after {
 }
 
 .checkbox-block {
-  align-items: flex-start; /* กรณีข้อความยาวขึ้นบรรทัดใหม่ */
+  align-items: flex-start;
   margin-bottom: 0.15cm;
 }
 
-/* ซ่อน Input แบบ Accessibility-friendly (กด Tab ได้) */
+/* ซ่อน Input แบบ Accessibility-friendly */
 input[type="radio"],
 input[type="checkbox"] {
   position: absolute;
@@ -182,16 +176,15 @@ input[type="checkbox"] {
   transition: all 0.2s;
 }
 
-.checkmark { border-radius: 50%; } /* วงกลมสำหรับ Radio */
-.checkmark-sq { border-radius: 2px; } /* สี่เหลี่ยมสำหรับ Checkbox */
+.checkmark { border-radius: 50%; } 
+.checkmark-sq { border-radius: 2px; } 
 
-/* สถานะ Focus เมื่อกด Tab คีย์บอร์ด */
+/* สถานะ Focus */
 input[type="radio"]:focus + .checkmark,
 input[type="checkbox"]:focus + .checkmark-sq {
   box-shadow: 0 0 0 2px var(--accent);
 }
 
-/* สร้างจุดกลมด้านใน (Radio) */
 .checkmark::after {
   content: "";
   position: absolute;
@@ -203,7 +196,6 @@ input[type="checkbox"]:focus + .checkmark-sq {
   background: var(--text-main);
 }
 
-/* สร้างเครื่องหมายถูก (Checkbox) */
 .checkmark-sq::after {
   content: "";
   position: absolute;
@@ -215,7 +207,6 @@ input[type="checkbox"]:focus + .checkmark-sq {
   transform: rotate(45deg);
 }
 
-/* แสดงผลเมื่อถูก Checked */
 input:checked + .checkmark::after,
 input:checked + .checkmark-sq::after {
   display: block;
@@ -226,7 +217,7 @@ input:checked + .checkmark-sq::after {
   margin-top: 1cm;
   display: flex;
   flex-direction: column;
-  align-items: flex-end; /* ดันไปชิดขวา */
+  align-items: flex-end;
   padding-right: 0.8cm;
   gap: 0.2cm;
 }
@@ -249,9 +240,7 @@ input:checked + .checkmark-sq::after {
   transition: border-color 0.2s;
 }
 
-.sig-box:hover {
-  border-bottom-color: var(--accent);
-}
+.sig-box:hover {border-bottom-color: var(--accent);}
 
 .sig-placeholder {
   font-size: 0.8rem;
@@ -265,20 +254,15 @@ input:checked + .checkmark-sq::after {
   object-fit: contain;
 }
 
-.name-input-wrap {
-  width: 6.5cm;
-}
+.name-input-wrap {width: 6.5cm;}
 
-.sig-name-row, .sig-date-row{
-  padding-right: 1.3cm;
-}
-.sig-date-row{
-  padding-right: 2cm;
-}
+.sig-name-row, .sig-date-row{padding-right: 1.3cm;}
+
+.sig-date-row{padding-right: 2cm;}
 
 /* ==================== SIGNATURE MODAL ==================== */
 .sig-modal-overlay {
-  display: none; /* ซ่อนเป็นค่าเริ่มต้น */
+  display: none;
   position: fixed;
   z-index: 9999;
   inset: 0;
@@ -288,9 +272,7 @@ input:checked + .checkmark-sq::after {
   justify-content: center;
 }
 
-.sig-modal-overlay.open {
-  display: flex;
-}
+.sig-modal-overlay.open {display: flex;}
 
 .sig-modal {
   background: #fff;
@@ -313,7 +295,7 @@ input:checked + .checkmark-sq::after {
   background: #fafafa;
   border-radius: 4px;
   cursor: crosshair;
-  touch-action: none; /* ป้องกันมือถือเลื่อนจอตอนเซ็น */
+  touch-action: none;
   margin: 0 auto;
 }
 
@@ -334,9 +316,20 @@ input:checked + .checkmark-sq::after {
 }
 
 .btn-sig:hover { background: #e9ecef; }
-.btn-sig.confirm { background: var(--primary); color: #fff; border-color: var(--primary); }
+
+.btn-sig.confirm { 
+  background: var(--primary); 
+  color: #fff; 
+  border-color: var(--primary); 
+}
+
 .btn-sig.confirm:hover { background: var(--primary-hover); }
-.btn-sig.cancel { background: var(--error); color: #fff; border-color: var(--error); }
+
+.btn-sig.cancel { background: var(--error); 
+  color: #fff; 
+  border-color: var(--error); 
+}
+
 .btn-sig.cancel:hover { background: var(--error-hover); }
 
 /* ==================== FLOATING SAVE BUTTON ==================== */
@@ -350,7 +343,7 @@ input:checked + .checkmark-sq::after {
   background: var(--primary);
   color: #fff;
   border: none;
-  border-radius: 50px; /* ขอบมนสวยงาม */
+  border-radius: 10px;
   cursor: pointer;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
   display: flex;
@@ -374,13 +367,11 @@ input:checked + .checkmark-sq::after {
 @media print {
   @page { size: A4; margin: 0; }
   
-  body {
-    background: #fff !important;
-  }
+  body {background: #fff !important;}
 
   .page {
     margin: 0 !important;
-    padding: 2.54cm 2cm !important; /* ระยะขอบ A4 มาตรฐาน */
+    padding: 2.54cm 2cm !important;
     box-shadow: none !important;
     width: 21cm !important;
   }
@@ -390,18 +381,14 @@ input:checked + .checkmark-sq::after {
     display: none !important;
   }
 
-  /* ทำให้เส้นชัดขึ้นตอนปริ้นท์กระดาษจริง */
+
   input[type="text"], input[type="number"], input[type="tel"] {
     border-bottom: 1.5pt dotted #000 !important;
   }
   
-  .sig-box {
-    border-bottom: 1.5pt dotted #000 !important;
-  }
+  .sig-box {border-bottom: 1.5pt dotted #000 !important;}
 
-  input:disabled {
-    background-color: transparent !important;
-  }
+  input:disabled {background-color: transparent !important;}
 }
 
 /* ==================== MOBILE RESPONSIVE ==================== */
@@ -414,9 +401,7 @@ input:checked + .checkmark-sq::after {
     box-shadow: none;
   }
   
-  header {
-    margin-top: 0 !important;
-  }
+  header {margin-top: 0 !important;}
 
   .line {
     flex-direction: column;
@@ -437,10 +422,6 @@ input:checked + .checkmark-sq::after {
     gap: 0.3rem;
   }
 
-  .check-row {
-    margin-left: 0 !important;
-  }
-
   .signature-section {
     padding-right: 0;
     width: 100%;
@@ -454,34 +435,28 @@ input:checked + .checkmark-sq::after {
     width: 100%;
   }
 
-  .sig-row{
-    gap: 0.1cm;
-  }
+  .sig-row{gap: 0.1cm;}
 
   .sig-box {
     width: 100% !important;
-    max-width: 220px;
+    max-width: 200px;
   }
 
-  .sig-name-row {
-    padding-right: 0.7cm !important;
-  }
+  .sig-name-row {padding-right: 0.7cm !important;}
 
   .sig-name-row > .input {
     width: 100%;
     max-width: 250px !important;
   }
 
-  .sig-date-row {
-    padding-right: 0.8cm !important;
-  }
+  .sig-date-row {padding-right: 0.8cm !important;}
 
   #saveBtn {
     bottom: 0;
     left: 0;
     right: 0;
     width: 100%;
-    border-radius: 0;
+    border-radius: 10px 10px 0px 0px;
     justify-content: center;
     padding: 18px;
     font-size: 1.1rem;
