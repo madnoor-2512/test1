@@ -1,3 +1,9 @@
+window.addEventListener("load", async () => {
+  if (document.fonts) {
+    await document.fonts.ready;
+  }
+  document.body.classList.add("ready");
+});
 document.addEventListener("DOMContentLoaded", () => {
 
   // 1. Utility: จัดการ Input ที่ซ่อน/แสดง ตามเงื่อนไข
@@ -196,8 +202,6 @@ document.addEventListener("DOMContentLoaded", () => {
       const { jsPDF } = window.jspdf;
       const pdf = new jsPDF({ unit: "mm", format: "a4", orientation: "portrait" });
       const pages = document.querySelectorAll(".page");
-      // const isSafariIOS = /iP(hone|ad|od)/.test(navigator.userAgent);
-      // const scale = isSafariIOS ? 2.5 : 2;
 
       for (let i = 0; i < pages.length; i++) {
         pages[i].querySelectorAll(".sig-placeholder, .bar").forEach(el => el.style.display = "none");

@@ -21,6 +21,16 @@ body {
   background-color: var(--bg-main);
   color: var(--text-main);
   line-height: 1.5;
+
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+
+  opacity: 0;
+  transition: opacity 0.4s ease-in-out;
+}
+
+body.ready {
+  opacity: 1;
 }
 
 body.modal-open {
