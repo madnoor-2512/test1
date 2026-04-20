@@ -4,6 +4,7 @@ window.addEventListener("load", async () => {
   }
   document.body.classList.add("ready");
 });
+
 document.addEventListener("DOMContentLoaded", () => {
 
   // 1. Utility: จัดการ Input ที่ซ่อน/แสดง ตามเงื่อนไข
@@ -252,6 +253,8 @@ document.addEventListener("DOMContentLoaded", () => {
         confirmButtonColor: "#1a5276",
         timer: 2000,
         showConfirmButton: false
+      }).then(() => {
+        window.location.reload();
       });
 
     } catch (err) {
