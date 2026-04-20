@@ -1,8 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
 
-  // ==========================================
   // 1. Utility: จัดการ Input ที่ซ่อน/แสดง ตามเงื่อนไข
-  // ==========================================
   function setupDependentInput(triggerSelector, targetId, conditionFn) {
     const target = document.getElementById(targetId);
     if (!target) return;
@@ -11,16 +9,13 @@ document.addEventListener("DOMContentLoaded", () => {
       const isRequired = conditionFn();
       target.disabled = !isRequired;
       target.required = isRequired;
-      // หากถูกปิดการใช้งาน ให้ล้างค่าทิ้งเพื่อไม่ให้ข้อมูลผิดพลาดส่งเข้าระบบ
       if (!isRequired) target.value = ""; 
     };
 
-    // ดักจับ Event Change จากกลุ่ม Input ที่กำหนด
     document.querySelectorAll(triggerSelector).forEach(el => {
       el.addEventListener("change", updateState);
     });
-
-    updateState(); // เรียกใช้ตอนโหลดเพื่อตั้งค่าเริ่มต้น
+    updateState();
   }
 
   // คำนำหน้า: อื่นๆ
@@ -44,16 +39,14 @@ document.addEventListener("DOMContentLoaded", () => {
     () => document.getElementById("regIncomplete").checked
   );
 
+  // การลงทะเบียน: อื่นๆ
   setupDependentInput(
     'input[name="regStatus"]', 
     "otherReason", 
     () => document.getElementById("regOther").checked
   );
 
-  // ==========================================
   // 2. Input Formatter: บังคับรูปแบบข้อมูล
-  // ==========================================
-  
   // เบอร์โทรศัพท์: รับเฉพาะตัวเลข 10 หลัก
   const phoneInput = document.getElementById("phone");
   if (phoneInput) {
@@ -62,7 +55,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // วันที่และเดือน: เติมเลข 0 ข้างหน้าถ้าพิมพ์หลักเดียว (เช่น พิมพ์ 1 -> 01)
+  // วันที่และเดือน
   ["sigDay", "sigMonth"].forEach(id => {
     const el = document.getElementById(id);
     if (el) {
@@ -75,10 +68,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-
-  // ==========================================
-  // 3. Signature Canvas: จัดการการเซ็นชื่อ (รองรับ Mobile DPI)
-  // ==========================================
+  // 3. Signature Canvas: จัดการการเซ็นชื่อ
   const canvas = document.getElementById("signatureCanvas");
   const ctx = canvas.getContext("2d", { alpha: true });
   let drawing = false;
@@ -86,7 +76,6 @@ document.addEventListener("DOMContentLoaded", () => {
   // ปรับขนาด Canvas ให้พอดีจอมือถือและคมชัด (High-DPI)
   function setupCanvasSize() {
     const modal = document.querySelector(".sig-modal");
-    // คำนวณความกว้าง: กว้างสุด 420px หรือตามขอบจอ (ลบ padding)
     const targetWidth = Math.min(modal.clientWidth - 40, 420); 
     const targetHeight = 160;
 
@@ -149,7 +138,7 @@ document.addEventListener("DOMContentLoaded", () => {
   window.openSignatureModal = () => {
     document.getElementById("signatureModal").classList.add("open");
     document.body.classList.add("modal-open");
-    setupCanvasSize(); // ปรับขนาดทุกครั้งที่เปิด Modal ให้วาดตรงเมาส์
+    setupCanvasSize();
     clearCanvas();
   };
 
@@ -175,10 +164,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (e.target.id === "signatureModal") closeSignatureModal();
   });
 
-
-  // ==========================================
   // 4. PDF Export (html2canvas + jsPDF)
-  // ==========================================
   window.exportPDF = async () => {
     const form = document.getElementById("FastTrackForm");
     
@@ -206,21 +192,18 @@ document.addEventListener("DOMContentLoaded", () => {
     btn.innerHTML = `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="animation:spin 1s linear infinite"><path d="M21 12a9 9 0 1 1-6.219-8.56"/></svg> กำลังสร้าง PDF...`;
 
     try {
-      // รอ Font โหลดเสร็จ 100% ป้องกันสระลอย/ฟอนต์เพี้ยน
       await document.fonts.ready;
-
       const { jsPDF } = window.jspdf;
       const pdf = new jsPDF({ unit: "mm", format: "a4", orientation: "portrait" });
       const pages = document.querySelectorAll(".page");
-      const isSafariIOS = /iP(hone|ad|od)/.test(navigator.userAgent);
-      const scale = isSafariIOS ? 2.5 : 2;
+      // const isSafariIOS = /iP(hone|ad|od)/.test(navigator.userAgent);
+      // const scale = isSafariIOS ? 2.5 : 2;
 
       for (let i = 0; i < pages.length; i++) {
-        // ซ่อนปุ่มต่างๆ ชั่วคราวก่อน Capture
         pages[i].querySelectorAll(".sig-placeholder, .bar").forEach(el => el.style.display = "none");
 
         const cvs = await html2canvas(pages[i], {
-          scale: scale,
+          scale: 2,
           useCORS: true,
           logging: false,
           backgroundColor: "#ffffff",
@@ -257,8 +240,7 @@ document.addEventListener("DOMContentLoaded", () => {
         if (i > 0) pdf.addPage();
         pdf.addImage(imgData, "PNG", 0, 0, imgWidth, Math.min(imgHeight, 297));
       }
-
-      pdf.save("ใบสมัคร_Fast_Track.pdf");
+      pdf.save("ใบสมัคร Fast Track.pdf");
 
       Swal.fire({
         icon: "success",
@@ -289,5 +271,4 @@ document.addEventListener("DOMContentLoaded", () => {
     spinStyle.textContent = `@keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }`;
     document.head.appendChild(spinStyle);
   }
-
 });
