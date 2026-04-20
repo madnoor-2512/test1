@@ -48,6 +48,12 @@ p, label, input, span, div {
   position: relative;
 }
 
+.AcademicYear {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+  }
+
 .divider {
   text-align: center;
   margin: 0.2cm 0 0.3cm;
@@ -418,6 +424,7 @@ input:checked + .checkmark-sq::after {
     display: flex;
     flex-wrap: wrap;
     width: 100%;
+    gap: 0.3rem;
   }
 
   .check-row {
@@ -431,7 +438,7 @@ input:checked + .checkmark-sq::after {
   }
 
   .sig-row {
-    gap: 0.2rem;
+    gap: 0.1cm;
     width: 100%;
   }
 
