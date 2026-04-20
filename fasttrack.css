@@ -432,43 +432,37 @@ input:checked + .checkmark-sq::after {
   }
 
   .signature-section {
-    align-items: center;
     padding-right: 0;
     width: 100%;
   }
 
-  .sig-row {
-    gap: 0.1cm;
-    width: 100%;
-  }
-
-  .sig-box {
-    width: 100% !important;
-    max-width: 250px;
-    margin: 0.5rem 0;
-  }
-
-  .sig-name-row {
+  .sig-row ,.sig-name-row, .sig-date-row {
     flex-direction: row !important;
     flex-wrap: nowrap !important;
     justify-content: center;
     align-items: center;
     width: 100%;
+  }
+
+  .sig-row{
+    gap: 0.1cm;
+  }
+
+  .sig-box {
+    width: 100% !important;
+    max-width: 220px;
+  }
+
+  .sig-name-row {
     padding-right: 0.7cm !important;
   }
 
   .sig-name-row > .input {
     width: 100%;
     max-width: 250px !important;
-    margin: 0 0.2rem;
   }
 
   .sig-date-row {
-    flex-direction: row !important;
-    flex-wrap: nowrap !important;
-    justify-content: center;
-    align-items: baseline;
-    width: 100%;
     padding-right: 0.8cm !important;
   }
 
