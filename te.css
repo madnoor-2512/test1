@@ -28,7 +28,7 @@ span {
   font-weight: lighter;
 }
 
-input {
+/* input {
   width: 100%;
   border: none;
   border-bottom: 1.8px dotted #000;
@@ -37,15 +37,13 @@ input {
   text-align: center;
 }
 
-input:focus {
-  outline: none;
-}
+
 
 input[type="checkbox"],
 input[type="radio"] {
   width: auto;
   border: none;
-}
+} */
 
 /* ==================== LAYOUT ==================== */
 .page {
@@ -72,12 +70,6 @@ input[type="radio"] {
   flex-wrap: wrap;
 }
 
-.input {
-  flex: 1;
-  position: relative;
-  min-width: 1cm;
-}
-
 /* ==================== SECTION TITLES ==================== */
 .section-title {
   font-weight: normal;
@@ -91,7 +83,38 @@ input[type="radio"] {
   margin-bottom: 0.15cm;
 }
 
-/* ==================== RADIO / CHECKBOX ==================== */
+/* ==================== INPUT TEXT & ANIMATED BAR ==================== */
+.input {
+  /* flex: 1; */
+  position: relative;
+  min-width: 1cm;
+}
+
+input:focus {
+  outline: none;
+}
+
+.bar::before,
+.bar::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  width: 0;
+  height: 2px;
+  background: #4a89dc;
+  transition: width 0.2s;
+}
+
+.bar::before { left: 50%; }
+.bar::after { right: 50%; }
+
+
+input:focus ~ .bar::before,
+input:focus ~ .bar::after {
+  width: 50%;
+}
+
+/* ==================== CUSTOM RADIO & CHECKBOX ==================== */
 .radio-group {
   display: flex;
   gap: 5px;
@@ -180,31 +203,6 @@ input[type="checkbox"]:checked + .checkmark-sq::after {
   display: none;
   margin-top: 4px;
   flex-shrink: 0;
-}
-
-/* ==================== INPUT FOCUS BAR ==================== */
-.bar::before,
-.bar::after {
-  content: "";
-  position: absolute;
-  bottom: 0;
-  width: 0;
-  height: 2px;
-  background: #4a89dc;
-  transition: width 0.2s;
-}
-
-.bar::before {
-  left: 50%;
-}
-
-.bar::after {
-  right: 50%;
-}
-
-input:focus ~ .bar::before,
-input:focus ~ .bar::after {
-  width: 50%;
 }
 
 /* ==================== SIGNATURE SECTION ==================== */
@@ -476,6 +474,11 @@ input:focus ~ .bar::after {
     box-shadow: none !important;
   }
 
+  .sig-box,.signature-section {
+    margin-left: 0 !important;
+    width: 100% !important;
+  }
+
   #saveBtn {
     position: fixed;
     bottom: 0;
@@ -486,11 +489,5 @@ input:focus ~ .bar::after {
     padding: 1.2rem;
     font-size: 1.1rem;
     z-index: 9999;
-  }
-
-  .sig-box,
-  .signature-section {
-    margin-left: 0 !important;
-    width: 100% !important;
   }
 }

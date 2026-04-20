@@ -219,9 +219,29 @@ document.addEventListener("DOMContentLoaded", () => {
           useCORS: true,
           logging: false,
           backgroundColor: "#ffffff",
+          windowWidth: 794,
+          onclone: (clonedDoc) => {
+            const pageEl = clonedDoc.querySelectorAll('.page')[i];
+            if(pageEl) {
+              pageEl.style.width = '21cm';
+              pageEl.style.minHeight = '29.7cm';
+              pageEl.style.padding = '2.54cm 2cm';
+              pageEl.style.margin = '0';
+              pageEl.style.boxShadow = 'none';
+            }
+            
+            const fixStyle = clonedDoc.createElement('style');
+            fixStyle.innerHTML = `
+              @media screen {
+                input[type="text"], input[type="number"], input[type="tel"] { 
+                  border-bottom: 1.5pt dotted #000 !important; 
+                  background: transparent !important;
+                }
+              }
+            `;
+            clonedDoc.head.appendChild(fixStyle);
+          }
         });
-
-        // คืนค่า Display ให้ Element 
         pages[i].querySelectorAll(".sig-placeholder").forEach(el => el.style.display = "");
         pages[i].querySelectorAll(".bar").forEach(el => el.style.display = "block");
 
