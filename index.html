@@ -24,7 +24,7 @@
       <div style="text-align: center; margin-bottom: 0.5cm;">
         <h1>ใบสมัครโครงการเรียนล่วงหน้าสู่ปริญญาโท (Fast Track to Master's Program)</h1>
         <h1>บัณฑิตวิทยาลัย มหาวิทยาลัยทักษิณ</h1>
-        <div class="line" style="justify-content:center;">
+        <div class="AcademicYear" style="justify-content:center;">
           <label for="academicYear">ประจำปีการศึกษา</label>
           <div class="input" style="max-width:2.5cm;">
             <input type="number" id="academicYear" name="academicYear" min="2568" max="2600" required>
@@ -39,8 +39,8 @@
           <legend class="section-title">ส่วนที่ 1 : ข้อมูลเกี่ยวกับผู้สมัคร</legend>
           
           <div class="line">
-            <span style="text-indent:0.7cm;">ข้าพเจ้า</span>
             <div class="radio-group">
+              <span style="text-indent:0.7cm;">ข้าพเจ้า</span>
               <label class="radio"><input type="radio" name="title" value="นาย" required>
                 <span class="checkmark-sq"></span>นาย
               </label>
@@ -114,18 +114,20 @@
 
           <div class="line">
             <span>ช่องทางติดต่ออื่นๆ:</span>
-            <label class="checkbox-label">
-              <input type="radio" name="contact" value="email">
-              <span class="checkmark-sq"></span> Email
-            </label>
-            <label class="checkbox-label">
-              <input type="radio" name="contact" value="line">
-              <span class="checkmark-sq"></span> Line
-            </label>
-            <label class="checkbox-label">
-              <input type="radio" name="contact" value="facebook">
-              <span class="checkmark-sq"></span> Facebook
-            </label>
+            <div class="radio-group">
+              <label class="checkbox-label">
+                <input type="radio" name="contact" value="email">
+                <span class="checkmark-sq"></span> Email
+              </label>
+              <label class="checkbox-label">
+                <input type="radio" name="contact" value="line">
+                <span class="checkmark-sq"></span> Line
+              </label>
+              <label class="checkbox-label">
+                <input type="radio" name="contact" value="facebook">
+                <span class="checkmark-sq"></span> Facebook
+              </label>
+            </div>
             <div class="input" style="flex:1;">
               <input type="text" id="contactId" name="contactId" disabled>
               <span class="bar"></span>
