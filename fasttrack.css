@@ -33,6 +33,11 @@ body.ready {opacity: 1;}
 
 body.modal-open {overflow: hidden;}
 
+body.exporting-pdf .sig-placeholder, 
+body.exporting-pdf .bar {
+  display: none !important;
+}
+
 h1 {
   font-size: 1.1rem;
   font-weight: normal;
@@ -131,15 +136,38 @@ input:focus ~ .bar::after {
 }
 
 /* ==================== CUSTOM RADIO & CHECKBOX ==================== */
+.line-tight {
+  display: flex;
+  align-items: center;
+  gap: 0.2cm;
+  margin-bottom: 0.25cm;
+  flex-wrap: wrap;
+}
+
+.line-radio {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.4cm;
+}
+
 .radio-group {
   display: flex;
+  align-items: center;
   gap: 12px;
+}
+
+.radio {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  line-height: 1;
 }
 
 .radio, .checkbox-label, .checkbox-block {
   display: flex;
   align-items: center;
-  gap: 6px;
+  gap: 5px;
   cursor: pointer;
   user-select: none;
 }
@@ -177,7 +205,10 @@ input[type="checkbox"] {
 }
 
 .checkmark { border-radius: 50%; } 
-.checkmark-sq { border-radius: 2px; } 
+.checkmark-sq { 
+  border-radius: 2px; 
+  margin-top: -2px;
+} 
 
 /* สถานะ Focus */
 input[type="radio"]:focus + .checkmark,

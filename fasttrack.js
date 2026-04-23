@@ -203,10 +203,9 @@ document.addEventListener("DOMContentLoaded", () => {
       const pdf = new jsPDF({ unit: "mm", format: "a4", orientation: "portrait" });
       const pages = document.querySelectorAll(".page");
 
+      document.body.classList.add("exporting-pdf");
       for (let i = 0; i < pages.length; i++) {
-        pages[i].querySelectorAll(".sig-placeholder, .bar").forEach(el => el.style.display = "none");
-
-        const cvs = await html2canvas(pages[i], {
+      const cvs = await html2canvas(pages[i], {
           scale: 2,
           useCORS: true,
           logging: false,
@@ -234,16 +233,14 @@ document.addEventListener("DOMContentLoaded", () => {
             clonedDoc.head.appendChild(fixStyle);
           }
         });
-        pages[i].querySelectorAll(".sig-placeholder").forEach(el => el.style.display = "");
-        pages[i].querySelectorAll(".bar").forEach(el => el.style.display = "block");
 
         const imgData = cvs.toDataURL("image/png", 1.0);
         const imgWidth = 210;
         const imgHeight = (cvs.height * imgWidth) / cvs.width;
-
         if (i > 0) pdf.addPage();
         pdf.addImage(imgData, "PNG", 0, 0, imgWidth, Math.min(imgHeight, 297));
       }
+
       pdf.save("ใบสมัคร Fast Track.pdf");
 
       Swal.fire({
@@ -267,6 +264,7 @@ document.addEventListener("DOMContentLoaded", () => {
     } finally {
       btn.disabled = false;
       btn.innerHTML = originalBtnContent;
+      document.body.classList.remove("exporting-pdf");
     }
   };
 
