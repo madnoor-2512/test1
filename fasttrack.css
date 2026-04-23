@@ -136,14 +136,6 @@ input:focus ~ .bar::after {
 }
 
 /* ==================== CUSTOM RADIO & CHECKBOX ==================== */
-.line-tight {
-  display: flex;
-  align-items: center;
-  gap: 0.2cm;
-  margin-bottom: 0.25cm;
-  flex-wrap: wrap;
-}
-
 .line-radio {
   display: flex;
   flex-wrap: wrap;
@@ -157,11 +149,9 @@ input:focus ~ .bar::after {
   gap: 12px;
 }
 
-.radio {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  line-height: 1;
+.radio .checkmark-sq,
+.checkbox-label .checkmark-sq {
+  margin-top: 1px; 
 }
 
 .radio, .checkbox-label, .checkbox-block {
@@ -207,8 +197,12 @@ input[type="checkbox"] {
 .checkmark { border-radius: 50%; } 
 .checkmark-sq { 
   border-radius: 2px; 
-  margin-top: -2px;
 } 
+
+.checkbox-block .checkmark,
+.checkbox-block .checkmark-sq {
+  margin-top: 4px;
+}
 
 /* สถานะ Focus */
 input[type="radio"]:focus + .checkmark,
